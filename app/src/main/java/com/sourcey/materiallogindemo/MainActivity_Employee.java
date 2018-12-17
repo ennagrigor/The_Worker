@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+//Employee login
 
 public class MainActivity_Employee extends AppCompatActivity {
 
