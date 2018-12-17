@@ -9,7 +9,7 @@
     tools:context=".MainActivity_Employee">
 
     <TextView
-        android:id="@+id/hello"
+        android:id="@+id/currentUserName"
         android:layout_width="185dp"
         android:layout_height="28dp"
         android:layout_alignParentStart="true"
@@ -17,7 +17,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="61dp"
-        android:text="Hello!"
+        android:text=""
         android:textSize="24sp" />
 
     <TextView

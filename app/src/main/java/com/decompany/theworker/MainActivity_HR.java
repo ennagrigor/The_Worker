@@ -12,11 +12,7 @@ public class MainActivity_HR extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_employee);
-
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        setContentView(R.layout.activity_main_hr);
     }
 
     @Override

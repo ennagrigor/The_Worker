@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1021314786025",
+    "firebase_url": "https://theworker-78c73.firebaseio.com",
+    "project_id": "theworker-78c73",
+    "storage_bucket": "theworker-78c73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021314786025:android:437a534cf6355933",
+        "android_client_info": {
+          "package_name": "com.decompany.theworker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021314786025-56607fg8slvdnaf4do3jmuljjte2aoi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.decompany.theworker",
+            "certificate_hash": "f716e43fe103c637c022f04668463041d7d05652"
+          }
+        },
+        {
+          "client_id": "1021314786025-a4nj6ofjvh4c3udjmhap34rb3h6kps0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsxAjs2zPF3u44w97ipcK012Er0hxsz5Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021314786025-a4nj6ofjvh4c3udjmhap34rb3h6kps0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
