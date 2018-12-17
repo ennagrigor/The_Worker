@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Material Login Example</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_employee">EmployeeActivity</string>
+    <string name="title_activity_main_manager">activity_main_manager</string>
+    <string name="title_activity_main_hr">activity_main_hr</string>
+</resources>
