@@ -1,4 +1,4 @@
-package com.sourcey.materiallogindemo;
+package com.decompany.theworker;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.sourcey.materiallogindemo;
+package com.decompany.theworker;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
+    private static final int REQUEST_SIGNUP = 1;
 
     @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;

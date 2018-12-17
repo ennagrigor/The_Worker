@@ -5,7 +5,7 @@ android {
     buildToolsVersion '26.0.2'
 
     defaultConfig {
-        applicationId "com.sourcey.materialloginexample"
+        applicationId "com.decompany.theworker"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
