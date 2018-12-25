@@ -134,7 +134,7 @@
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/namager_name"
+                android:id="@+id/manager_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Manager Name"
@@ -149,7 +149,7 @@
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/position"
+                android:id="@+id/input_position"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position"
@@ -164,7 +164,7 @@
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/kind_of_employee"
+                android:id="@+id/input_kind_of_employee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Kind of employee"
@@ -179,7 +179,7 @@
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/salary"
+                android:id="@+id/input_salary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Salary"
