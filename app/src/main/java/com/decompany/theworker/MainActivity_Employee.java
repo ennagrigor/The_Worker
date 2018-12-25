@@ -26,7 +26,6 @@ public class MainActivity_Employee extends AppCompatActivity {
     private TextView name;
 
     private DatabaseReference profileUserRef;
-    //FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
 
     private String currentUserId;
@@ -35,27 +34,30 @@ public class MainActivity_Employee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_employee);
+        Employee e = CurrentWorker.instance.getCurrentWorker();
+        name.setText("Hello " + e.name + ",");
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUserId = mAuth.getCurrentUser().getUid();
-        profileUserRef = FirebaseDatabase.getInstance().getReference();
-
-        name = (TextView) findViewById(R.id.currentUserName);
-
-        profileUserRef.child("workers").child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    String currentName = dataSnapshot.child("name").getValue().toString();
-                    name.setText("Hello " + currentName + ",");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        mAuth = FirebaseAuth.getInstance();
+//        currentUserId = mAuth.getCurrentUser().getUid();
+//        profileUserRef = FirebaseDatabase.getInstance().getReference();
+//
+//        name = (TextView) findViewById(R.id.currentUserName);
+//
+//        profileUserRef.child("workers").child(currentUserId).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    Employee e = dataSnapshot.getValue(Employee.class);
+//                    name.setText("Hello " + e.name + ",");
+//                    CurrentWorker.instance.setCurrentWorker(e);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     @Override

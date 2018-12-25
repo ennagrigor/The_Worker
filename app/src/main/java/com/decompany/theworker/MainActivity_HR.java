@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 
 public class MainActivity_HR extends AppCompatActivity {
+    private Button dayOff;
+    private Button salaryRaise;
+    private Button sickNote;
+    private Button createStatistics;
+    private Button createNewUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
