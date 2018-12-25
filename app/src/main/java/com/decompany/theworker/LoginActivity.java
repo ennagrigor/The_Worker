@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 
 public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
@@ -61,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter your Email address", Toast.LENGTH_SHORT).show();
         }
-
         else if(TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
         }
@@ -90,6 +87,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void SendTheUserToTheRelevantActivity() {
+
+        
         Intent mainIntent = new Intent(this, MainActivity_Employee.class);
         //mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
