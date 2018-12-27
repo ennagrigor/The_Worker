@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class PublishMessageApp extends Application {
+public class App extends Application {
 
     public static final String channelId = "My Team";
 
@@ -17,8 +17,6 @@ public class PublishMessageApp extends Application {
         //setContentView(R.layout.activity_publish_message);
         createNotificationChannel();
     }
-
-
 
     private void createNotificationChannel() {
         Manager m = new Manager();
