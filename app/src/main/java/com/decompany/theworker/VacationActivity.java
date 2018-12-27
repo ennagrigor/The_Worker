@@ -70,7 +70,6 @@ public class VacationActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationActivity notificationActivity = new NotificationActivity();
                 Toast.makeText(VacationActivity.this, "Request submitted", Toast.LENGTH_SHORT).show();
             }
         });
