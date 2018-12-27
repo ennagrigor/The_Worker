@@ -116,8 +116,11 @@ public class LoginActivity extends AppCompatActivity {
                     else if(e.kindOfEmployee.equals("manager")){
                         e = dataSnapshot.getValue(Manager.class);
                     }
-                    CurrentWorker.instance.setCurrentWorker(e);
-                    Log.e("here ", e.kindOfEmployee);
+                    else if(e.kindOfEmployee.equals("employee")){
+                        e = dataSnapshot.getValue(Employee.class);
+                    }
+                    //CurrentWorker.instance.setCurrentWorker(e);
+                    //Log.e("here ", e.kindOfEmployee);
                     SendTheUserToTheRelevantActivity();
                 }
             }

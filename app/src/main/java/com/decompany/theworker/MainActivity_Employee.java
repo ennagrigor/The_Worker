@@ -35,7 +35,7 @@ public class MainActivity_Employee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_employee);
         Employee e = CurrentWorker.instance.getCurrentWorker();
-        name.setText("Hello " + e.name + ",");
+        //name.setText("Hello " + e.name + ",");
 
 //        mAuth = FirebaseAuth.getInstance();
 //        currentUserId = mAuth.getCurrentUser().getUid();
