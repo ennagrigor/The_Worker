@@ -8,24 +8,6 @@
     tools:context=".SalaryRaiseActivity">
 
     <TextView
-        android:id="@+id/top_text"
-        android:layout_width="349dp"
-        android:layout_height="73dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Welcome to salary raise request"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/tvDate"
         android:layout_width="326dp"
         android:layout_height="72dp"
@@ -33,13 +15,13 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="404dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="Select date "
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -51,7 +33,9 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/tvDate"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.596"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <EditText
             android:id="@+id/explanation"
@@ -69,8 +53,9 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.314"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.435"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <EditText
             android:id="@+id/amount"
@@ -102,5 +87,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
         app:layout_constraintVertical_bias="0.438"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="323dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/salaryraise"
+        tools:srcCompat="@drawable/salaryraise" />
 
 </android.support.constraint.ConstraintLayout>
