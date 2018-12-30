@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/inbox_title"
-        android:layout_width="129dp"
-        android:layout_height="79dp"
+        android:layout_width="128dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -21,15 +21,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/notification_list"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/inbox_items"
+        android:layout_width="368dp"
+        android:layout_height="408dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inbox_title"
-        app:layout_constraintVertical_bias="0.1"
-        tools:layout_editor_absoluteX="16dp"
-        android:text="notification" />
+        tools:layout_editor_absoluteX="8dp" />
+
 </android.support.constraint.ConstraintLayout>

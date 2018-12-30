@@ -1,9 +1,7 @@
 package com.decompany.theworker;
 
 import java.sql.Time;
-import java.sql.Date;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,7 +13,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,26 +24,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Date;
 
 import static android.app.Notification.DEFAULT_ALL;
-import static com.decompany.theworker.App.channelId;
+import static com.decompany.theworker.App.channelA;
 
 public class PublishMessage extends AppCompatActivity {
 
     private NotificationManagerCompat notificationManager;
     private EditText editTextTitle;
     private EditText editTextMessage;
-    private TextView notificationList;
+    //private TextView notificationList;
     private String authorId;
     private String authorName;
     private FirebaseAuth mAuth;
     private DatabaseReference profileUserRef;
-    private Button sentToMyTeamBtn;
+    private Button sendToMyTeamBtn;
     private String title;
     private String message;
+    private int id;
     TheWorkerNotification not;
-    Date date;
+    String date;
     Time time;
 
     @Override
@@ -61,8 +61,8 @@ public class PublishMessage extends AppCompatActivity {
 
         editTextTitle = findViewById(R.id.edit_text_title);
         editTextMessage = findViewById(R.id.edit_text_message);
-        notificationList = (TextView)findViewById(R.id.notification_list);
-        sentToMyTeamBtn = findViewById(R.id.send_to_my_team);
+        //notificationList = (TextView)findViewById(R.id.notification_list);
+        sendToMyTeamBtn = findViewById(R.id.send_to_my_team);
         authorId = mAuth.getCurrentUser().getUid();
 
         profileUserRef.child("workers").child(authorId).addValueEventListener(new ValueEventListener() {
@@ -81,7 +81,7 @@ public class PublishMessage extends AppCompatActivity {
             }
         });
 
-        sentToMyTeamBtn.setOnClickListener(new View.OnClickListener() {
+        sendToMyTeamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 title = editTextTitle.getText().toString();
@@ -103,7 +103,7 @@ public class PublishMessage extends AppCompatActivity {
         //broadcastIntent.putExtra("toastMessage", message);
         PendingIntent actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification notification = new NotificationCompat.Builder(this, channelId)
+        Notification notification = new NotificationCompat.Builder(this, channelA)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
                 .setContentText(message)
@@ -115,13 +115,15 @@ public class PublishMessage extends AppCompatActivity {
                 .setOnlyAlertOnce(true)
                 .build();
 
-        notificationManager.notify(1, notification);
+        id = createID();
+        notificationManager.notify(id, notification);
         return notification;
     }
 
     private void addToInbox(Notification notification) {
-        not = new TheWorkerNotification(authorName, editTextTitle.getText().toString(), editTextMessage.getText().toString(), 8889898);
-        profileUserRef.child("notifications").child(authorId).setValue(not).addOnCompleteListener(new OnCompleteListener<Void>() {
+        date = new SimpleDateFormat("dd.MM.yy,hh:mm:ss",  Locale.ENGLISH).format(new Date());
+        not = new TheWorkerNotification(authorName, editTextTitle.getText().toString(), editTextMessage.getText().toString(), date);
+        profileUserRef.child("notifications").child(authorId).child(String.valueOf(id)).setValue(not).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -134,4 +136,11 @@ public class PublishMessage extends AppCompatActivity {
             }
         });
     }
+
+    public int createID(){
+        Date now = new Date();
+        id = Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.ENGLISH).format(now));
+        return id;
+    }
+
 }

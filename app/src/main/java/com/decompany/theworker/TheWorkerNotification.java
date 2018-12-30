@@ -1,16 +1,14 @@
 package com.decompany.theworker;
 
-import java.sql.Time;
-import java.sql.Date;
+import java.util.Date;
 
 public class TheWorkerNotification {
     private String notificationAuthor;
     private String notificationTitle;
     private String notificationDescription;
-    private long notificationDate;
-    //private Time notificationHour;
+    private String notificationDate;
 
-    public TheWorkerNotification(String notificationAuthor, String notificationTitle, String notificationDescription, long notificationDate) {
+    public TheWorkerNotification(String notificationAuthor, String notificationTitle, String notificationDescription, String notificationDate) {
         this.notificationAuthor = notificationAuthor;
         this.notificationTitle = notificationTitle;
         this.notificationDescription = notificationDescription;
@@ -44,11 +42,11 @@ public class TheWorkerNotification {
         this.notificationDescription = notificationDescription;
     }
 
-    public long getNotificationDate() {
+    public String getNotificationDate() {
         return notificationDate;
     }
 
-    public void setNotificationDate(long notificationDate) {
+    public void setNotificationDate(String notificationDate) {
         this.notificationDate = notificationDate;
     }
 

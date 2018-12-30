@@ -4,32 +4,33 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
 
 public class App extends Application {
 
-    public static final String channelId = "My Team";
+    private String team;
+    public static final String channelA = "Team A";
+    //You can add more channels here
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate();
         //setContentView(R.layout.activity_publish_message);
-        createNotificationChannel();
+        createNotificationChannel(channelA);
     }
 
-    private void createNotificationChannel() {
-        Manager m = new Manager();
+    private void createNotificationChannel(String channelID) {
+        Manager m;
         m = (Manager) CurrentWorker.instance.getCurrentWorker();
+        team = m.team;
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel1 = new NotificationChannel(
-                    channelId, "Team A", NotificationManager.IMPORTANCE_HIGH
+            NotificationChannel channelNotification = new NotificationChannel(
+                    App.channelA, "Team " + team, NotificationManager.IMPORTANCE_HIGH
             );
-            channel1.setDescription("Messages for team A");
+            channelNotification.setDescription("Messages for team " + team);
 
             NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel1);
+            manager.createNotificationChannel(channelNotification);
         }
     }
 }
