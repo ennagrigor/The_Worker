@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -36,13 +36,20 @@ import java.util.Calendar;
 
 public class SickNoteActivity extends AppCompatActivity {
 
+    public String dateStart;
+    public String dateEnd;
+    public String URL;
+    public String finalUrl;
     private static final String TAG = "SickNoteActivity";
     private TextView mDisplayDateStart;
     private TextView mDisplayDateEnd;
     private DatePickerDialog.OnDateSetListener mDateSetListenerStart;
     private DatePickerDialog.OnDateSetListener mDateSetListenerEnd;
-    private Button add_file, submit;
+    private Button add_file, upload, submit;
     private TextView notification;
+    private EditText mEditTextTo;
+    private EditText mEditTextSubject;
+    private EditText mEdittextMessage;
     Uri pdfUri;
     ProgressDialog progressDialog;
 
@@ -55,6 +62,11 @@ public class SickNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sick_note);
+
+        mEditTextTo = findViewById(R.id.edit_text_to);
+        mEditTextSubject = findViewById(R.id.edit_text_subject);
+        mEdittextMessage = findViewById(R.id.edit_text_message);
+        submit = findViewById(R.id.submit);
 
         // the date selection option
         mDisplayDateStart = (TextView) findViewById(R.id.tvDate);
@@ -102,8 +114,8 @@ public class SickNoteActivity extends AppCompatActivity {
                 month = month + 1;
                 Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                String date = month + "/" + day + "/" + year;
-                mDisplayDateStart.setText(date);
+                dateStart = month + "/" + day + "/" + year;
+                mDisplayDateStart.setText(dateStart);
             }
         };
 
@@ -113,8 +125,8 @@ public class SickNoteActivity extends AppCompatActivity {
                 month = month + 1;
                 Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                String date = month + "/" + day + "/" + year;
-                mDisplayDateEnd.setText(date);
+                dateEnd = month + "/" + day + "/" + year;
+                mDisplayDateEnd.setText(dateEnd);
             }
         };
 
@@ -123,7 +135,7 @@ public class SickNoteActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         add_file = findViewById(R.id.add_file);
-        submit = findViewById(R.id.submit);
+        upload = findViewById(R.id.upload);
         notification = findViewById(R.id.notification);
 
         add_file.setOnClickListener(new View.OnClickListener(){
@@ -137,7 +149,7 @@ public class SickNoteActivity extends AppCompatActivity {
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener(){
+        upload.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View view){
                 if(pdfUri != null){
@@ -148,7 +160,12 @@ public class SickNoteActivity extends AppCompatActivity {
             }
 
         });
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMail();
+            }
+        });
     }
 
     private void upLoadFile(Uri pdfUri) {
@@ -160,18 +177,20 @@ public class SickNoteActivity extends AppCompatActivity {
         progressDialog.show();
 
         final String fileName = System.currentTimeMillis()+"";
-        StorageReference storageReference = storage.getReference(); //root
+        final StorageReference storageReference = storage.getReference(); //root
         storageReference.child("Uploads").child(fileName).putFile(pdfUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String Url = taskSnapshot.getStorage().getDownloadUrl().toString();
-                        DatabaseReference reference = database.getReference();
-                        reference.child(fileName).setValue(Url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+
+                        URL = taskSnapshot.getStorage().getDownloadUrl().toString();
+                        final DatabaseReference reference = database.getReference();
+                        reference.child(fileName).setValue(URL).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(SickNoteActivity.this, "File upload successful ", Toast.LENGTH_SHORT).show();
+                                   // URL = storageReference.getDownloadUrl().toString();
                                 }else{
                                     Toast.makeText(SickNoteActivity.this, "File upload not successful", Toast.LENGTH_SHORT).show();
                                 }
@@ -188,6 +207,8 @@ public class SickNoteActivity extends AppCompatActivity {
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                 //track the upload progress
                 int currentProgress =  (int) ( 100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                URL = storageReference.getDownloadUrl().toString();
+
                 progressDialog.setProgress(currentProgress);
             }
         });
@@ -220,6 +241,22 @@ public class SickNoteActivity extends AppCompatActivity {
         }else{
             Toast.makeText(SickNoteActivity.this, "Please select a file", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void sendMail(){
+        String recipientList = mEditTextTo.getText().toString();
+        String[] recipients = recipientList.split(",");
+
+        String subject = mEditTextSubject.getText().toString();
+        String message = "The Starting sick day is from " + dateStart+" and until "+ dateEnd +".\n "+ "The url for downloading the file is: "+URL+"\n" +"Additional notes: "+ mEdittextMessage.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an email client: "));
     }
 }
 
