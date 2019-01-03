@@ -2,8 +2,13 @@ package com.decompany.theworker;
 
 import java.sql.Time;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -13,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,14 +35,13 @@ import java.util.Locale;
 import java.util.Date;
 
 import static android.app.Notification.DEFAULT_ALL;
-import static com.decompany.theworker.App.channelA;
 
 public class PublishMessage extends AppCompatActivity {
 
     private NotificationManagerCompat notificationManager;
     private EditText editTextTitle;
     private EditText editTextMessage;
-    //private TextView notificationList;
+    private TextView notificationList;
     private String authorId;
     private String authorName;
     private FirebaseAuth mAuth;
@@ -44,10 +49,13 @@ public class PublishMessage extends AppCompatActivity {
     private Button sendToMyTeamBtn;
     private String title;
     private String message;
+    private NotificationManager mang;
     private int id;
     TheWorkerNotification not;
     String date;
     Time time;
+    private String team;
+    public static final String channelA = "Team A";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,9 +123,34 @@ public class PublishMessage extends AppCompatActivity {
                 .setOnlyAlertOnce(true)
                 .build();
 
+//        Manager m;
+//        m = (Manager) CurrentWorker.instance.getCurrentWorker();
+//        team = m.team;
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channelNotification = new NotificationChannel(
+                    PublishMessage.channelA, "Team " + team, NotificationManager.IMPORTANCE_HIGH
+            );
+            channelNotification.setDescription("Messages for team " + team);
+            channelNotification.enableLights(true);
+            channelNotification.enableVibration(true);
+            channelNotification.setLightColor(Color.GREEN);
+            channelNotification.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            //NotificationManager manager = getSystemService(NotificationManager.class);
+            //manager.createNotificationChannel(channelNotification);
+            getManager().createNotificationChannel(channelNotification);
+        }
+
         id = createID();
         notificationManager.notify(id, notification);
         return notification;
+    }
+
+    public NotificationManager getManager(){
+        if (mang==null)
+            mang=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        return mang;
     }
 
     private void addToInbox(Notification notification) {
