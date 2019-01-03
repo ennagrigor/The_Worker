@@ -23,7 +23,7 @@ public class MainActivity_Manager extends AppCompatActivity {
         publishAmessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity_Manager.this, PublishMessage.class);
+                Intent intent = new Intent(MainActivity_Manager.this, NotificationActivity.class);
                 startActivity(intent);
             }
         });

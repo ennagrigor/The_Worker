@@ -7,7 +7,7 @@
     tools:context=".PublishMessage">
 
     <EditText
-        android:id="@+id/edit_text_title"
+        android:id="@+id/edit_text_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,21 +15,34 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="74dp"
         android:layout_weight="1"
-        android:hint="Title" />
+        android:hint="To:" />
+
+    <EditText
+        android:id="@+id/edit_text_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="137dp"
+        android:layout_weight="1"
+        android:hint="Subject:" />
 
     <EditText
         android:id="@+id/edit_text_message"
         android:layout_width="match_parent"
         android:layout_height="127dp"
-        android:layout_below="@+id/edit_text_title"
+        android:layout_below="@+id/edit_text_to"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="40dp"
-        android:hint="Message" />
+        android:layout_marginTop="83dp"
+        android:hint="Message:" />
 
     <Button
         android:id="@+id/send_to_my_team"
