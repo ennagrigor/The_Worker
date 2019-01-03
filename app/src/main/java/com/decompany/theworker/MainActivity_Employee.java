@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,62 +25,43 @@ import static com.google.firebase.database.FirebaseDatabase.*;
 
 public class MainActivity_Employee extends AppCompatActivity {
 
-    private TextView name;
-
-    private DatabaseReference profileUserRef;
-    private FirebaseAuth mAuth;
-
-    private String currentUserId;
+    private Button dayOffButton;
+    private Button salaryRaiseButton;
+    private Button sickNoteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_employee);
-        Employee e = CurrentWorker.instance.getCurrentWorker();
-        //name.setText("Hello " + e.name + ",");
 
-//        mAuth = FirebaseAuth.getInstance();
-//        currentUserId = mAuth.getCurrentUser().getUid();
-//        profileUserRef = FirebaseDatabase.getInstance().getReference();
-//
-//        name = (TextView) findViewById(R.id.currentUserName);
-//
-//        profileUserRef.child("workers").child(currentUserId).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if(dataSnapshot.exists()){
-//                    Employee e = dataSnapshot.getValue(Employee.class);
-//                    name.setText("Hello " + e.name + ",");
-//                    CurrentWorker.instance.setCurrentWorker(e);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-    }
+        dayOffButton = (Button) findViewById(R.id.dayOff);
+        salaryRaiseButton = (Button) findViewById(R.id.salaryRaise);
+        sickNoteButton = (Button) findViewById(R.id.sickNote);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        dayOffButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity_Employee.this, VacationActivity.class);
+                startActivity(intent);
+            }
+        });
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        salaryRaiseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity_Employee.this, SalaryRaiseActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        sickNoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity_Employee.this, SickNoteActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        return super.onOptionsItemSelected(item);
+
     }
 }

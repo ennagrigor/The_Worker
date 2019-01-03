@@ -50,9 +50,6 @@
         <activity
             android:name=".PublishMessage"
             android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".Inbox"
-            android:theme="@style/AppTheme.Dark"/>
 
         <receiver android:name=".NotificationReciever"/>
     </application>
