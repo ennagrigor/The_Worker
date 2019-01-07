@@ -25,16 +25,16 @@ public class MainActivity_HR extends AppCompatActivity {
         dayOffButton = (Button) findViewById(R.id.dayOff);
         salaryRaiseButton = (Button) findViewById(R.id.salaryRaise);
         sickNoteButton = (Button) findViewById(R.id.sickNote);
-        createStatisticsButton = (Button) findViewById(R.id.createStatistics);
+      //  createStatisticsButton = (Button) findViewById(R.id.createStatistics);
         createNewUserButton = (Button) findViewById(R.id.createNewUser);
 
-//        dayOffButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), VacationActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        dayOffButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), VacationActivity.class);
+                startActivity(intent);
+           }
+        });
 
         salaryRaiseButton.setOnClickListener(new View.OnClickListener() {
             @Override
