@@ -47,7 +47,7 @@ public class SickNoteActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListenerEnd;
     private Button add_file, upload, submit;
     private TextView notification;
-    private EditText mEditTextTo;
+    //private EditText mEditTextTo;
     private EditText mEditTextSubject;
     private EditText mEdittextMessage;
     Uri pdfUri;
@@ -63,7 +63,7 @@ public class SickNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sick_note);
 
-        mEditTextTo = findViewById(R.id.edit_text_to);
+        //mEditTextTo = findViewById(R.id.edit_text_to);
         mEditTextSubject = findViewById(R.id.edit_text_subject);
         mEdittextMessage = findViewById(R.id.edit_text_message);
         submit = findViewById(R.id.submit);
@@ -244,7 +244,7 @@ public class SickNoteActivity extends AppCompatActivity {
     }
 
     private void sendMail(){
-        String recipientList = mEditTextTo.getText().toString();
+        String recipientList = "daniel@decompany.com";
         String[] recipients = recipientList.split(",");
 
         String subject = mEditTextSubject.getText().toString();

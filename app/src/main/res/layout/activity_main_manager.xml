@@ -71,7 +71,7 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="31dp"
         android:layout_marginRight="29dp"
-        android:text="SUBMIT SICK NOTE" />
+        android:text="Submit sick note" />
 
     <ImageView
         android:id="@+id/imageView4"
