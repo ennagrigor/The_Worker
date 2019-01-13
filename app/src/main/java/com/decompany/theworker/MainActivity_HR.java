@@ -14,7 +14,7 @@ public class MainActivity_HR extends AppCompatActivity {
     private Button dayOffButton;
     private Button salaryRaiseButton;
     private Button sickNoteButton;
-    private Button createStatisticsButton;
+  //  private Button createStatisticsButton;
     private Button createNewUserButton;
 
     @Override
@@ -52,13 +52,13 @@ public class MainActivity_HR extends AppCompatActivity {
             }
         });
 
-        createStatisticsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity_HR.this, StatisticsActivity.class);
-                startActivity(intent);
-            }
-        });
+       // createStatisticsButton.setOnClickListener(new View.OnClickListener() {
+      //      @Override
+      //      public void onClick(View view) {
+      //          Intent intent = new Intent(MainActivity_HR.this, StatisticsActivity.class);
+      //          startActivity(intent);
+      //      }
+      //  });
 
         createNewUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
